@@ -38,7 +38,7 @@ def display_img():
     coord = [x0, y0, x1, y1]
 
     # Read also the box id; this can be useful to have on the image.
-    id_box = df['id_box'][0]
+    id_box = str(int(df['id_box'][0]))
     font = ImageFont.truetype('arial', 40)
     # font can create problems because it could be that the path to font file 
     # needs to be specified.
