@@ -9,6 +9,9 @@ From within Excel, one can click on any row and the script will read the image p
 
 In our project, we used [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/) to manually annotate insects in images: place a bounding box and add various taxa information and additional metadata. However, it is difficult to filter metadata (annotation data) with VIA, so our taxonomists feel at ease using Excel with the annotated dataset.
 
+![xlwings-01](https://user-images.githubusercontent.com/14074269/197849882-fc5bba75-7ac2-48e9-b0be-c67fd173342e.jpg)
+![xlwings-02](https://user-images.githubusercontent.com/14074269/197849897-1cb8b94e-bf4b-4aed-a6ae-cd9bb4b23f4d.jpg)
+
 
 # Installation / How to make it work?
 
