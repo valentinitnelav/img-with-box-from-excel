@@ -1,0 +1,76 @@
+# This script helps a Excel user to visualise images which have their full/absolute paths
+# stored in a column (here named 'windows_img_path'). Each images has also 4 coordinates for 
+# the boudning box (x, y, width, height) as given by the VGG Image Annotator (VIA),
+# see https://www.robots.ox.ac.uk/~vgg/software/via/
+# The script works only if each row in the Excel file corresponds to a single bounding box.
+
+# This script should be stored anywhere together with its corresponding xlsm file.
+# Need to provide the file name at `if __name__ == "__main__":` below.
+# Rename the script to match the name of the xlsm file as well.
+
+import xlwings as xw
+import pandas as pd
+import PIL
+from PIL import Image, ImageDraw, ImageFont
+
+
+def display_img():
+    wb = xw.Book.caller() # the calling book
+    # Return the row id of the currect selected cell
+    cellRange = wb.app.selection 
+    row_id = cellRange.row
+
+    # Read each current (selected) row as a data frame.
+    # First read the header of the sheet (1st row).
+    # It only works properly as long as there are no empty cells within cells
+    # with values in the first row / header of the sheet.
+    cols = wb.sheets['Sheet1'].range(1,1).expand(mode='right').value
+    # Then read each current row based on the lenght of the header (cols is a list here)
+    line = wb.sheets['Sheet1'].range(cell1=(row_id,1), cell2=(row_id,len(cols))).value
+    # Create the 1-row data frame which contains the info stored in the selected row
+    df = pd.DataFrame([line], columns=cols)
+
+    # Read the box coordinates and prepare them for PIL.ImageDraw.Draw.rectangle()
+    x0 = df['x'][0]
+    y0 = df['y'][0]
+    x1 = df['x'][0] + df['width'][0]
+    y1 = df['y'][0] + df['height'][0]
+    coord = [x0, y0, x1, y1]
+
+    # Read also the box id; this can be useful to have on the image.
+    id_box = df['id_box'][0]
+    font = ImageFont.truetype('arial', 40)
+    # font can create problems because it could be that the path to font file 
+    # needs to be specified.
+
+    # Read image path from Excel
+    img_path = df['windows_img_path'][0]
+    # Open image, draw the box & the box id
+    with Image.open(img_path) as im:
+        draw = ImageDraw.Draw(im)
+        # https://pillow.readthedocs.io/en/stable/reference/ImageDraw.html#PIL.ImageDraw.ImageDraw.rectangle
+        draw.rectangle(xy=coord, outline='Red', width=3)
+        # Place the box id a bit more towards the upper left corner
+        draw.text((x0-10, y0-10), id_box, fill='Blue', font=font, stroke_fill='White', stroke_width=3)
+        im.show(title=img_path)  
+        # title doesn't work with `show`, 
+        # see https://github.com/python-pillow/Pillow/issues/5739
+        # This is because PIL opens a temporary PNG file for the current image file.
+        # Also, "Users of the library should use a context manager or call Image.Image.close() 
+        # on any image opened with a filename or Path object to ensure that the underlying file is closed."
+        # https://pillow.readthedocs.io/en/stable/reference/open_files.html#proposed-file-handling
+        im.close() # I am unsure about this, but it doesn't break the code :)
+
+
+# When you hit the "Run main" (play green button) from the xlwings tab, 
+# it will run the main function declared below, which calls display_img()
+# Or you can create a button to which you can assign the VBA Subroutine.
+# For example, the SampleCall() subroutine from the template module (Module 1)
+#  that was created with the xlwings_test_project.xlsm by the cmd line `xlwings quickstart <name>`
+def main():
+    display_img()
+
+# Change here the "xlwings_test_project.xlsm" with your file name.
+if __name__ == "__main__":
+    xw.Book("xlwings_test_project.xlsm").set_mock_caller() # !!! Add your file name
+    main()
