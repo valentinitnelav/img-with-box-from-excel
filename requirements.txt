@@ -4,3 +4,11 @@
 
 pandas>=1.1.3
 Pillow>=9.2.0
+xlwings>=0.28.3
+
+# Optional Dependencies for xlwings
+# https://docs.xlwings.org/en/stable/installation.html#optional-dependencies
+numpy>=1.19.2
+matplotlib>=3.6.1
+Jinja2>=2.11.1
+requests>=2.23.0
