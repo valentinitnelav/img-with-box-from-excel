@@ -1,0 +1,6 @@
+# Usage: pip install -r requirements.txt
+# But if you run the line below as suggested in the readme, then no need to care much about this file: 
+# pip install "xlwings[all]"
+
+pandas>=1.1.3
+Pillow>=7.1.2
