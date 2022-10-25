@@ -5,7 +5,7 @@
 # The script works only if each row in the Excel file corresponds to a single bounding box.
 
 # This script should be stored anywhere together with its corresponding xlsm file.
-# Need to provide the file name at `if __name__ == "__main__":` below.
+# Need to provide the file name under `if __name__ == "__main__":` below.
 # Rename the script to match the name of the xlsm file as well.
 
 import xlwings as xw
