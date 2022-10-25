@@ -1,6 +1,8 @@
+[![DOI](https://zenodo.org/badge/557367197.svg)](https://zenodo.org/badge/latestdoi/557367197)
+
 # Overview
 
-Integrate Python with Excel VBA for visualizing images with their corresponding bounding boxes for your AI project. 
+Use `xlwings` to integrate Python with Excel VBA for visualizing images with their corresponding bounding boxes for your AI project. 
 Why still Excel? Because it is familiar to many people and still very powerful and user-friendly, especially when you need to add many annotation metadata fields and filter data in these fields/columns.
 
 This repository consists of a single Python script that allows image visualization from within Excel, together with the associated bounding box of an annotated object).
@@ -61,5 +63,9 @@ if __name__ == "__main__":
 ```
 - All set. Click in the Excel file on any cell, go to menu xlwings and press the green play button named “Run main”. The script will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
 
+# How to cite this repository?
 
+If this work helped you in any way and would like to cite it, you can do so with a DOI from Zenodo, like:
+
+> Valentin Ștefan. (2022). Use `xlwings` to integrate Python with Excel VBA for visualizing images with their corresponding bounding boxes for your AI project. (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.7250165
 
