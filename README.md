@@ -20,16 +20,16 @@ In our project, we used [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/
 
 # Installation - how to make it work?
 
-Data structure: one should have the annotation data stored in an Excel file in which each row represents information about a single bounding box.
+Excel data structure: 
 
-Each row should have the following columns so that the provided [Python script](https://github.com/valentinitnelav/img-with-box-from-excel/blob/main/img-with-box-from-excel.py) works without any other adjustments:
+- One should have the annotation data stored in an Excel file (`*.xlsm` not `*.xlsx`; see details below) in which each row represents information about a single bounding box. The provided [Python script](https://github.com/valentinitnelav/img-with-box-from-excel/blob/main/img-with-box-from-excel.py) works only if each row in the Excel file corresponds to a single bounding box.
+- The first row of the Excel file must act as the header of the data and must not have empty cells within cells with data (each column should have a user defined name);
+- Each row should have the following columns so that the provided Python script works without any other adjustments:
+    - `windows_img_path`: string type, the full/absolute path to the image, e.g. `I:\data\field-images\2021-07-06\Centaurea-scabiosa-01\IMG_0377.JPG`;
+    - `id_box`: integer, the id of each box as recorded by the [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/); 
+    - `x`, `y`, `width` & `height` integer type columns as given by VIA; these are the bounding box coordinates, where `x` & `y` represent the upper left corner (the origin).
 
-- `windows_img_path`: string type, the full/absolute path to the image, e.g. `I:\data\field-images\2021-07-06\Centaurea-scabiosa-01\IMG_0377.JPG`;
-- `id_box`: integer, the id of each box as recorded by the [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/); 
-- `x`, `y`, `width` & `height` integer type columns as given by VIA; these are the bounding box coordinates, where `x` & `y` represent the upper left corner (the origin);
-
-The Python script works only if each row in the Excel file corresponds to a single bounding box.
-This script should be stored anywhere together with its corresponding `*.xlsm` file (not `*xlsx` - see details below).
+This Python script should be stored anywhere together with its corresponding `*.xlsm` file.
 One needs to provide the `*.xlsm` file name under the line `if __name__ == "__main__":` in the provided Python script.
 Also, rename the script to match the name of the `*.xlsm` file as well.
 
