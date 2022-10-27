@@ -1,38 +1,43 @@
 [![DOI](https://zenodo.org/badge/557367197.svg)](https://zenodo.org/badge/latestdoi/557367197)
 
-# Overview
+# Overview - what is this about?
 
-Use `xlwings` to integrate Python with Excel VBA for visualizing images with their corresponding bounding boxes for your AI project. 
-Why still Excel? Because it is familiar to many people and still very powerful and user-friendly, especially when you need to add many annotation metadata fields and filter data in these fields/columns.
-
-This repository consists of a single Python script that allows image visualization from within Excel, together with the associated bounding box of an annotated object).
-
-From within Excel, one can click on any row and the script will read the image path and the coordinates of the bounding box and display the image in a window together with the box placed on the object of interest.
-
-In our project, we used [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/) to manually annotate insects in images: place a bounding box and add various taxa information and additional metadata. However, it is difficult to filter metadata (annotation data) with VIA, so our taxonomists feel at ease using Excel with the annotated dataset.
+How to use the free functionality of the [xlwings](https://www.xlwings.org/) library to integrate Python with Excel for visualizing images with their corresponding bounding boxes for image annotation workflows in your AI project.
 
 ![xlwings-01](https://user-images.githubusercontent.com/14074269/197849882-fc5bba75-7ac2-48e9-b0be-c67fd173342e.jpg)
 ![xlwings-02](https://user-images.githubusercontent.com/14074269/197849897-1cb8b94e-bf4b-4aed-a6ae-cd9bb4b23f4d.jpg)
+
 The Syrphid image was downloaded from [wikipedia](https://en.wikipedia.org/wiki/Hover_fly#/media/File:ComputerHotline_-_Syrphidae_sp._(by)_(3).jpg)
 
-# Installation / How to make it work?
+Why Excel for image annotation workflows? Because it is familiar to many people and still very powerful and user-friendly, especially when you need to add many annotation metadata fields and filter data in these fields/columns.
 
-One should have an Excel file where each row stores information about a single bounding box.
-Each row should have these columns so that the provided Python script works without any other adjustments:
+This repository consists of a single Python script that allows image visualization from within Excel, together with the associated bounding box of an annotated object.
 
-- `windows_img_path`: string, the full/absolute path to the image, e.g. `I:\data\field-img\2021-07-06\Centaurea-scabiosa-01\IMG_0377.JPG`;
-- `id_box`: integer, the id of each box as given by VGG-VIA; 
-- `x`, `y`, `width` & `height` integer type columns as given by VGG-VIA; these are the bounding box coordinates, where x & y represent the upper left corner (the origin);
+From within Excel, one can click on any row and the script will read the image path together with the coordinates of the bounding box, and display the image in a window together with the box placed on the object of interest.
+
+In our project, we used [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/) to manually annotate insects in images: manually place a bounding box and add various taxa information together with some custom metadata. However, it is difficult to filter and edit metadata fields with VIA, while Excel is more friendly for such tasks.
+
+
+# Installation - how to make it work?
+
+Data structure: one should have the annotation data stored in an Excel file in which each row represents information about a single bounding box.
+
+Each row should have the following columns so that the provided [Python script](https://github.com/valentinitnelav/img-with-box-from-excel/blob/main/img-with-box-from-excel.py) works without any other adjustments:
+
+- `windows_img_path`: string type, the full/absolute path to the image, e.g. `I:\data\field-images\2021-07-06\Centaurea-scabiosa-01\IMG_0377.JPG`;
+- `id_box`: integer, the id of each box as recorded by the [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/); 
+- `x`, `y`, `width` & `height` integer type columns as given by VIA; these are the bounding box coordinates, where `x` & `y` represent the upper left corner (the origin);
 
 The Python script works only if each row in the Excel file corresponds to a single bounding box.
-This script should be stored anywhere together with its corresponding xlsm file.
-One needs to provide the xlsm file name under `if __name__ == "__main__":` in the script.
-Also, rename the script to match the name of the xlsm file as well.
+This script should be stored anywhere together with its corresponding `*.xlsm` file (not `*xlsx` - see details below).
+One needs to provide the `*.xlsm` file name under the line `if __name__ == "__main__":` in the provided Python script.
+Also, rename the script to match the name of the `*.xlsm` file as well.
 
 One needs to install [xlwings](https://docs.xlwings.org/en/latest/) and the xlwings add-in. See also these two tutorials for the installation:
 
 - [How to Supercharge Excel With Python](https://towardsdatascience.com/how-to-supercharge-excel-with-python-726b0f8e22c2) by Costas Andreou;
 - The official xlwings website with installation documentation - [here](https://docs.xlwings.org/en/latest/installation.html)
+
 
 **Here are the important steps (for Windows):**
 
