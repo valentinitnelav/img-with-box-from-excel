@@ -15,18 +15,20 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 def display_img():
-    wb = xw.Book.caller() # the calling book
-    # Return the row id of the currect selected cell
-    cellRange = wb.app.selection 
-    row_id = cellRange.row
+    # Get the calling/current workbook
+    wb = xw.Book.caller()
+    # Get the calling/current sheet
+    sht = wb.sheets.active
+    # Return the row id of the calling/currect selected cell
+    row_id = wb.app.selection.row
 
     # Read each current (selected) row as a data frame.
     # First read the header of the sheet (1st row).
     # It only works properly as long as there are no empty cells within cells
     # with values in the first row / header of the sheet.
-    cols = wb.sheets['Sheet1'].range(1,1).expand(mode='right').value
+    cols = sht.range(1,1).expand(mode='right').value
     # Then read each current row based on the lenght of the header (cols is a list here)
-    line = wb.sheets['Sheet1'].range(cell1=(row_id,1), cell2=(row_id,len(cols))).value
+    line = sht.range(cell1=(row_id,1), cell2=(row_id,len(cols))).value
     # Create the 1-row data frame which contains the info stored in the selected row
     df = pd.DataFrame([line], columns=cols)
 
@@ -70,7 +72,7 @@ def display_img():
 def main():
     display_img()
 
-# Change here the "xlwings_test_project.xlsm" with your file name.
+# Change below "xlwings_test_project.xlsm" with your xlsm file name.
 if __name__ == "__main__":
-    xw.Book("xlwings_test_project.xlsm").set_mock_caller() # !!! Add your file name
+    xw.Book("xlwings_test_project.xlsm").set_mock_caller() # !!! Add your xlsm file name !!!
     main()
