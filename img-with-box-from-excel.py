@@ -15,6 +15,15 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 def display_img():
+    """
+    This function does the followings:
+    - reads info from the calling/current workbook, sheet, cell;
+    it reads from the following user-defined columns (must be named exactly like this):
+    windows_img_path, id_box, x, y, width & height (the last 4 are the bounding box coordinates, 
+    where x & y are the origin = upper left corner)
+    - displays the image with the bounding box in temporary window
+    """
+    
     # Get the calling/current workbook
     wb = xw.Book.caller()
     # Get the calling/current sheet
