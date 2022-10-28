@@ -41,32 +41,33 @@ One needs to install [xlwings](https://docs.xlwings.org/en/latest/) and the xlwi
 
 **Here are the important steps (for Windows):**
 
-- From keyboard: Windows button + R;
-- Type `cmd` then hit Enter; this will start the cmd.exe on Windows (is a terminal where you can write instructions for the computer to execute)
-- I assume that Python is installed; if not can check this [tutorial](https://www.digitalocean.com/community/tutorials/install-python-windows-10)
+- Start Command Prompt (`cmd.exe`) on Windows (is a terminal where you can write instructions for the computer to execute). From keyboard: Windows button + R then type `cmd`, then hit Enter. Or type directly `cmd` in the search box of the start menu in Windows OS, then hit Enter.
+- I assume that Python is installed; if not can check this [tutorial](https://www.digitalocean.com/community/tutorials/install-python-windows-10);
 - To check if Python is installed type `where python` and you should see something like `C:\Python38\python.exe`;
-- Install xlwings with the command `pip install xlwings`; If all goes well, you should see something like:
+- Note that, to install all needed dependencies you can try the command `pip install "xlwings[all]"` as suggested official xlwings documentation page, [here](https://docs.xlwings.org/en/latest/installation.html#optional-dependencies).
+If `pip install "xlwings[all]"` fails, then:
 ```sh
-xlwings version: 0.28.3
-Successfully installed the xlwings add-in!
+pip install pandas
+pip install Pillow
+pip install xlwings
 ```
-- To install all needed dependencies you can try the command `pip install "xlwings[all]"` as suggested official xlwings documentation page, [here](https://docs.xlwings.org/en/latest/installation.html#optional-dependencies);
-- Install the Excel add-in with `xlwings addin install`
+- Install the Excel add-in with the command `xlwings addin install`
 - In any Excel file, you need to enable the macro options: menu File > Options > Trust Center > Trust Center Settings > Macro Settings > “Enable all macros..."
-- Ccreate a template project with the command `xlwings quickstart project_name` (in the terminal, use `cd` to set the needed path, for example, `cd Documents`). This creates the folder `project_name` which contains two files (you can rename them, but should have the same name): 
+- Create a template project with the command `xlwings quickstart project_name` (in the terminal, use `cd` to set the needed path, for example, `cd Documents`). This creates the folder `project_name` which contains two files (you can rename them, but should have the same name): 
   - project_name.xlsm
   - project_name.py
 - In the project_name.xlsm, enable the xlwings add-in by pressing the keys ALT+L+H; If the combination of keys doesn't work, then: menu File > Add-ins > button "Go..." (usually at the bottom, to the right of "Manage: Excel Add-ins"); Click “Browse” and search for a path similar to this one `C:\Users\you_user_name\AppData\Roaming\Microsoft\Excel\XLSTART`; Select the file `xlwings.xlam`; OK; YES (if asked to replace the existing file); OK again;
 - At his point, you should see a new menu/tab named "xlwings" in any Excel file (after the Help menu/tab); 
-- Copy your Excel data (see the minimum column requirements above) into the project_name.xlsm file;
-- Copy the content or download the Python script from this repository (img-with-box-from-excel.py) and replace project_name.py. Rename if needed so that it matches the name of the xlsm file;
+- Add or copy your tabular data (see the minimum column requirements above) into the project_name.xlsm file;
+- Copy the content or download the Python script from this repository (img-with-box-from-excel.py) and replace the script project_name.py. Make sure that the script file matches the name of your xlsm file;
 - Provide the xlsm file name under `if __name__ == "__main__":` in the Python script
 ```python
 if __name__ == "__main__":
-    xw.Book("project_name.xlsm").set_mock_caller() # !!! Add your file name
+    xw.Book("project_name.xlsm").set_mock_caller() # !!! Add your file name !!! Replace project_name.xlsm with your xlsm file
     main()
 ```
 - All set. Click in the Excel file on any cell, go to menu xlwings and press the green play button named “Run main”. The script will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
+- It will work on any sheet in your xlsm file as long as it can find the minimum required columns mentioned above and they contain valid values.
 
 # How to cite this repository?
 
