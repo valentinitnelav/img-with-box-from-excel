@@ -56,7 +56,7 @@ Successfully installed the xlwings add-in!
 - Ccreate a template project with the command `xlwings quickstart project_name` (in the terminal, use `cd` to set the needed path, for example, `cd Documents`). This creates the folder `project_name` which contains two files (you can rename them, but should have the same name): 
   - project_name.xlsm
   - project_name.py
-- In the project_name.xlsm, enable the xlwings add-in by pressing the keys ALT+L+H; click “Browse” and search for this path `C:\Users\you_user_name\AppData\Roaming\Microsoft\Excel\XLSTART`; select the file xlwings.xlam; OK; YES (if asked to replace the existing file); OK again;
+- In the project_name.xlsm, enable the xlwings add-in by pressing the keys ALT+L+H; If the combination of keys doesn't work, then: menu File > Add-ins > button "Go..." (usually at the bottom, to the right of "Manage: Excel Add-ins"); Click “Browse” and search for a path similar to this one `C:\Users\you_user_name\AppData\Roaming\Microsoft\Excel\XLSTART`; Select the file `xlwings.xlam`; OK; YES (if asked to replace the existing file); OK again;
 - At his point, you should see a new menu/tab named "xlwings" in any Excel file (after the Help menu/tab); 
 - Copy your Excel data (see the minimum column requirements above) into the project_name.xlsm file;
 - Copy the content or download the Python script from this repository (img-with-box-from-excel.py) and replace project_name.py. Rename if needed so that it matches the name of the xlsm file;
