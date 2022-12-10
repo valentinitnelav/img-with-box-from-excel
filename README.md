@@ -22,24 +22,17 @@ From within Excel, one can click on any row and a Python script will read the im
 
 Excel data structure: 
 
-- One should have the annotation data stored in an Excel file (`*.xlsm` not `*.xlsx`; see details below) in which each row represents information about a single bounding box. The provided [Python script](https://github.com/valentinitnelav/img-with-box-from-excel/blob/main/img-with-box-from-excel.py) works only if each row in the Excel file corresponds to a single bounding box.
+- One should have the annotation data stored in an Excel file (`*.xlsm` not `*.xlsx`; see details below) in which each row represents information about a single bounding box. The tool works only if each row in the Excel file corresponds to a single bounding box.
 - The first row of the Excel file must act as the header of the data and must not have empty cells within cells with data (each column should have a user defined name);
-- Each row should have the following columns so that the provided Python script works without any other adjustments:
+- Each row should have the following columns so that the tool works without any other adjustments:
     - `windows_img_path`: string type, the full/absolute path to the image, e.g. `I:\data\field-images\2021-07-06\Centaurea-scabiosa-01\IMG_0377.JPG`;
     - `id_box`: integer, the id of each box as recorded by the [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/); 
     - `x`, `y`, `width` & `height` integer type columns as given by VIA; these are the bounding box coordinates, where `x` & `y` represent the upper left corner (the origin).
 
-This Python script should be stored anywhere together with its corresponding `*.xlsm` file.
-One needs to provide the `*.xlsm` file name under the line `if __name__ == "__main__":` in the provided Python script.
-Also, rename the script to match the name of the `*.xlsm` file as well.
 
-One needs to install [xlwings](https://docs.xlwings.org/en/latest/) and the xlwings add-in. See also these two tutorials for the installation:
+## Here are the important steps (for Windows):
 
-- [How to Supercharge Excel With Python](https://towardsdatascience.com/how-to-supercharge-excel-with-python-726b0f8e22c2) by Costas Andreou;
-- The official xlwings website with installation documentation - [here](https://docs.xlwings.org/en/latest/installation.html)
-
-
-**Here are the important steps (for Windows):**
+### Installation of dependecies (do only once)
 
 - Start Command Prompt (`cmd.exe`) on Windows (is a terminal where you can write instructions for the computer to execute). From keyboard: Windows button + R then type `cmd`, then hit Enter. Or type directly `cmd` in the search box of the start menu in Windows OS, then hit Enter.
 - I assume that Python is installed; if not can check this [tutorial](https://www.digitalocean.com/community/tutorials/install-python-windows-10);
@@ -53,21 +46,34 @@ pip install xlwings
 ```
 - Install the Excel add-in with the command `xlwings addin install`
 - In any Excel file, you need to enable the macro options: menu File > Options > Trust Center > Trust Center Settings > Macro Settings > “Enable all macros..."
-- Create a template project with the command `xlwings quickstart project_name` (in the terminal, use `cd` to set the needed path, for example, `cd Documents`). This creates the folder `project_name` which contains two files (you can rename them, but should have the same name): 
-  - project_name.xlsm
-  - project_name.py
-- In the project_name.xlsm, enable the xlwings add-in by pressing the keys ALT+L+H; If the combination of keys doesn't work, then: menu File > Options > Add-ins > button "Go..." (usually at the bottom, to the right of "Manage: Excel Add-ins"); Click “Browse” and search for a path similar to this one `C:\Users\you_user_name\AppData\Roaming\Microsoft\Excel\XLSTART`; Select the file `xlwings.xlam`; OK; YES (if asked to replace the existing file); OK again;
-- At his point, you should see a new menu/tab named "xlwings" in any Excel file (after the Help menu/tab); 
-- Add or copy your tabular data (see the minimum column requirements above) into the project_name.xlsm file;
-- Copy the content or download the Python script from this repository (img-with-box-from-excel.py) and replace the script project_name.py. Make sure that the script file matches the name of your xlsm file;
-- Provide the xlsm file name under `if __name__ == "__main__":` in the Python script
-```python
-if __name__ == "__main__":
-    xw.Book("project_name.xlsm").set_mock_caller() # !!! Add your file name !!! Replace project_name.xlsm with your xlsm file
-    main()
+- Clone this repository at your favorite location, e.g. to `C:\Users\your_user_name\Documents`:
+```sh
+cd C:\Users\your_user_name\Documents
+git clone https://github.com/valentinitnelav/img-with-box-from-excel
 ```
-- All set. Click in the Excel file on any cell, go to menu xlwings and press the green play button named “Run main”. The script will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
-- It will work on any sheet in your xlsm file as long as it can find the minimum required columns mentioned above and they contain valid values.
+### Run the tool
+
+You would use it like this on a xlsx file:
+```sh
+cd C:\Users\your_user_name\Documents\img-with-box-from-excel\src # path to the src folder of this repository
+python3 start_project.py path/to/your/data_file.xlsx
+```
+
+Assuming you have a file called data_file.xlsx:
+- In the terminal, navigate with `cd` at the src folder of the cloned repository, e.g. `cd C:\Users\your_user_name\Documents\img-with-box-from-excel\src`
+- Execute the tool with `python3 start_project.py path/to/your/data_file.xlsx`. This creates a folder within the folder where `data_file.xlsx` is located with 2 files named after the Excel file: data_file.xlsm and data_file.py. All the data was copied in data_file.xlsm. 
+- Open data_file.xlsm and enable the xlwings add-in by pressing the keys ALT+L+H; If the combination of keys doesn't work, then: menu File > Options > Add-ins > button "Go..." (usually at the bottom, to the right of "Manage: Excel Add-ins"); Click “Browse” and search for a path similar to this one `C:\Users\you_user_name\AppData\Roaming\Microsoft\Excel\XLSTART`; Select the file `xlwings.xlam`; OK; YES (if asked to replace the existing file); OK again;
+- At his point, you should see a new menu/tab named "xlwings" in the Excel file (after the Help menu/tab); 
+
+
+All set. Click in the Excel file on any cell, go to menu xlwings and press the green play button named “Run main”. The tool will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
+It will work on any sheet in your xlsm file as long as it can find the minimum required columns mentioned above and they contain valid values.
+
+
+Additional resources for [xlwings](https://docs.xlwings.org/en/latest/) and the xlwings add-in:
+
+- [How to Supercharge Excel With Python](https://towardsdatascience.com/how-to-supercharge-excel-with-python-726b0f8e22c2) by Costas Andreou;
+- The official xlwings website with installation documentation - [here](https://docs.xlwings.org/en/latest/installation.html)
 
 # How to cite this repository?
 
