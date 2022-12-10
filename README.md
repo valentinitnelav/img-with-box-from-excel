@@ -2,21 +2,21 @@
 
 # Overview - what is this about?
 
-How to use the free functionality of the [xlwings](https://www.xlwings.org/) library to integrate Python with Excel for visualizing images with their corresponding bounding boxes for image annotation workflows in your AI project.
+How to use the free functionality of the [xlwings](https://www.xlwings.org/) library to integrate Python with Excel for visualizing annotated images with their associated bounding boxes for object annotation workflows in your object detection project.
 
 ![xlwings-01](https://user-images.githubusercontent.com/14074269/197849882-fc5bba75-7ac2-48e9-b0be-c67fd173342e.jpg)
 ![xlwings-02](https://user-images.githubusercontent.com/14074269/197849897-1cb8b94e-bf4b-4aed-a6ae-cd9bb4b23f4d.jpg)
 
 The Syrphid image was downloaded from [wikipedia](https://en.wikipedia.org/wiki/Hover_fly#/media/File:ComputerHotline_-_Syrphidae_sp._(by)_(3).jpg)
 
-Why Excel for image annotation workflows? Because it is familiar to many people and still very powerful and user-friendly, especially when you need to add many annotation metadata fields and filter data in these fields/columns.
+Why Excel for image annotation workflows?
+Because it is familiar to many people and still very powerful and user-friendly, especially when you need to add many annotation metadata fields and filter data in these fields/columns.
 
-This repository consists of a single Python script that allows image visualization from within Excel, together with the associated bounding box of an annotated object.
+In our AI project, we used [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/) to manually annotate insects in images, that is, manually place a bounding box and add record taxa information together with custom metadata. However, it is difficult to filter and edit metadata fields with VIA, while Excel is more user friendly for such tasks. Therfore, it was needed and useful to visualise the annotated images directly from Excel.
 
-From within Excel, one can click on any row and the script will read the image path together with the coordinates of the bounding box, and display the image in a window together with the box placed on the object of interest.
+This repository ofers the tools to view images directly from within Excel, together with the associated bounding box of an annotated object.
 
-In our project, we used [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/) to manually annotate insects in images: manually place a bounding box and add various taxa information together with some custom metadata. However, it is difficult to filter and edit metadata fields with VIA, while Excel is more friendly for such tasks.
-
+From within Excel, one can click on any row and a Python script will read the image path together with the coordinates of the bounding box, and display the image in a window together with the box placed on the annotated object of interest.
 
 # Installation - how to make it work?
 
