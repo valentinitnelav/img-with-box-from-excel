@@ -39,9 +39,9 @@ xlsx_file_name_without_extension = os.path.splitext(xlsx_file_name)[0]
 
 # Read all the sheets from the xlsx file.
 try:
-    xl = pd.ExcelFile(xlsx_file)
+    xl = pd.ExcelFile(xlsx_file, engine='openpyxl')
 except:
-    print("The file at " + xlsx_file + " does not exist or is not readable.")
+    print("Error trying to read from " + xlsx_file)
     sys.exit()
 
 
@@ -62,12 +62,12 @@ book = load_workbook(xlsm_file)
 # Delete the first empty sheet from the xlsm template file.
 book.remove(book["Sheet1"])
 
-writer = pd.ExcelWriter(xlsm_file, engine = 'openpyxl')
+writer = pd.ExcelWriter(xlsm_file, engine='openpyxl')
 writer.book = book
 for sheet_name in xl.sheet_names:
     print("Writing sheet " + sheet_name + " to xlsm file " + xlsm_file)
     df = xl.parse(sheet_name)
-    df.to_excel(writer, sheet_name = sheet_name, index = False)
+    df.to_excel(writer, sheet_name=sheet_name, index=False)
 
 # Move the sheet "_xlwings.conf" to the end of the xlsm file.
 # This sheet was created together with Sheet1 (deleted above) when `xlwings quickstart` was run.
