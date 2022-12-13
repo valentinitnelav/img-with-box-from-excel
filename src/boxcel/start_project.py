@@ -7,7 +7,7 @@ import pandas as pd
 from openpyxl import load_workbook
 
 
-# Read the xlsx file as the frist argument.
+# Read the xlsx file which is the frist argument.
 xlsx_file = sys.argv[1]
 # For how to add arguments to the script from command line with sys.argv, see 
 # https://www.tutorialspoint.com/python/python_command_line_arguments.htm
@@ -77,15 +77,16 @@ book._sheets.append(sheet)
 
 writer.close()
 
-# Copy the Python code for the created xlwings template xlsm file.
-# This consists in adding the name of the xlsm file to the script display_images.py
-# Read the path to the folder where this script file is located
-current_file = os.path.realpath(__file__)
-path_to_current_file = os.path.dirname(current_file)
-display_images_py_file = os.path.join(path_to_current_file, "display_images.py")
-# Check also this:
-# display_images_py_file = pkgutil.get_data(__package__, "src/display_images.py")
-# from https://stackoverflow.com/a/51724506/5193830
+# Generate the Python code for the newly created xlwings template xlsm file.
+# This consists in copying the code from the script display_images.py and 
+# inserting the name of the corresponding xlsm file after the line
+# if __name__ == "__main__": 
+
+# Get the path to the directory where this script file is located & executed from:
+path_to_dir_boxcel = sys.path[0] # this returns path/to/img-with-box-from-excel/src
+display_images_py_file = os.path.join(path_to_dir_boxcel, "display_images.py")
+print('Path to the current executed python file is: ' + display_images_py_file)
+
 
 target_py_file = os.path.join(path_to_xlsx_file,
                               xlsx_file_name_without_extension, 
