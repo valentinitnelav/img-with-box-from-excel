@@ -81,19 +81,19 @@ def start_project(xlsx_file):
     # if __name__ == "__main__": 
     
     # Get the path to the directory where this script file is located & executed from:
-    path_to_dir_boxcel = sys.path[0] # this returns path/to/img-with-box-from-excel/src
+    path_to_dir_boxcel = sys.path[0] # this should return path/to/img-with-box-from-excel/src/boxcel
     display_images_py_file = os.path.join(path_to_dir_boxcel, "display_images.py")
-    print('Path to the current executed python file is: ' + display_images_py_file)
 
-
-    target_py_file = os.path.join(path_to_xlsx_file,
-                                xlsx_file_name_without_extension, 
-                                xlsx_file_name_without_extension + ".py")
+    target_py_file = os.path.join(
+        path_to_xlsx_file, 
+        xlsx_file_name_without_extension, 
+        xlsx_file_name_without_extension + ".py"
+        )
 
     with open(display_images_py_file,'r') as firstfile, open(target_py_file,'w') as secondfile:
         # Read content from first file
         for line in firstfile:  
-            # For line "xw.Book("xlwings_test_project.xlsm").set_mock_caller()"
+            # For the particular line containing "xw.Book("xlwings_test_project.xlsm").set_mock_caller()"
             # replace "xlwings_test_project.xlsm" with the name of the xlsm file
             if "xw.Book(" in line:
                 line = line.replace("xlwings_test_project.xlsm", xlsx_file_name_without_extension + ".xlsm")
