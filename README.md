@@ -65,25 +65,24 @@ xlwings addin install
 
 ### Run the tool
 
-- Assuming you have a file called `data_file.xlsx` (with the requirements from above), to make it ready to run with xlwings, in the Anaconda Prompt (or Anaconda Powershell Prompt) do this:
+- Assuming you have a file called `data_file.xlsx` (with the requirements from above), to make it ready to run with this xlwings tool, in the Anaconda Prompt (or Anaconda Powershell Prompt) do this:
 ```sh
 # In a terminal/command line navigate to the cloned repository and then to the src/boxcel folder
 cd C:\Users\your_user_name\Documents\img-with-box-from-excel\src\boxcel
 # Execute the start_project.py which takes as argument the path to your Excel file:
 python start_project.py path\to\your\data_file.xlsx # or python3 ...
 # Example:
-# python start_project.py C:\Users\your_user_name\Downloads\hymenoptera_sample.xlsx
+# python start_project.py C:\Users\your_user_name\Downloads\data_file.xlsx
 
 # You should see something like:
 # xlwings version: 0.28.5
-# Writing sheet Andrenidae to xlsm file C:\Users\your_user_name\Downloads\hymenoptera_sample\hymenoptera_sample.xlsm
-# Copied the Python code from C:\Users\your_user_name\Documents\img-with-box-from-excel\src\boxcel\display_images.py to C:\Users\your_user_name\Downloads\hymenoptera_sample\hymenoptera_sample.py
+# Copied the Python code from C:\Users\your_user_name\Documents\img-with-box-from-excel\src\boxcel\display_images.py to C:\Users\your_user_name\Downloads\data_file.py
 # All good!
 ```
-This creates a folder within the folder where `data_file.xlsx` is located with 2 files named after the Excel file: `data_file.xlsm` and `data_file.py`. All sheets & data from `data_file.xlsx` were copied to `data_file.xlsm`.
+This just created the `data_file.py` in the same folder with `data_file.xlsx`.
 
-Open the xlsm file, click on any cell, go to the xlwings menu, and press the green play button named "Run main". The tool will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
-It will work on any sheet in your `data_file.xlsm` file as long as it can find the required columns mentioned above and they contain valid values.
+Open the Excel file, click on any cell, go to the xlwings menu, and press the green play button named "Run main". The tool will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
+It will work on any sheet in your `data_file.xlsx` file as long as it can find the required columns mentioned above and they contain valid values.
 
 
 Additional resources for [xlwings](https://docs.xlwings.org/en/latest/) and the xlwings add-in:
