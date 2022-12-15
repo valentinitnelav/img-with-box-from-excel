@@ -3,21 +3,15 @@
 
 import sys
 import os
-import pandas as pd
-from openpyxl import load_workbook
 
 def start_project(xlsx_file):
     """
-    This function does the followings:
-    - reads the xlsx file;
-    - initiates a xlwings project (a template .xlsm .py files) with the same name as the xlsx file;
-    - writes the data from the xlsx file to the xlsm file;
-    - writes the needed code to the .py file.
+    This function writes the needed code to the *.py file corresponding to the *.xlsx file.
     """
 
     # Test if the xlsx file exists
     if not os.path.isfile(xlsx_file):
-        print("The file " + xlsx_file + " does not exist.")
+        print("The file " + xlsx_file + " does not exist or wrong path.")
         sys.exit()
 
     # Test if the xlsx file has the extension .xlsx
@@ -35,60 +29,16 @@ def start_project(xlsx_file):
     xlsx_file_name_without_extension = os.path.splitext(xlsx_file_name)[0]
 
 
-    # Read all the sheets from the xlsx file.
-    try:
-        xl = pd.ExcelFile(xlsx_file, engine='openpyxl')
-    except:
-        print("Error trying to read from " + xlsx_file)
-        sys.exit()
-
-
-    # Create a template project with the command xlwings quickstart project_name
-    # The command is run from the directory where the xlsx file is located.
-    # It creates a folder with the name of the xlsx file without the extension.
-    os.chdir(path_to_xlsx_file)
-    os.system("xlwings quickstart " + xlsx_file_name_without_extension)
-
-
-    # Write the data from xl to the xlwings template xlsm file for each sheet.
-    # The xlsm file is located in the folder with the name of the xlsx file.
-    # https://stackoverflow.com/a/42375263/5193830
-    xlsm_file = os.path.join(path_to_xlsx_file, 
-                            xlsx_file_name_without_extension,
-                            xlsx_file_name_without_extension + ".xlsm")
-    book = load_workbook(xlsm_file)
-    # Delete the first empty sheet from the xlsm template file.
-    book.remove(book["Sheet1"])
-
-    writer = pd.ExcelWriter(xlsm_file, engine='openpyxl')
-    writer.book = book
-    for sheet_name in xl.sheet_names:
-        print("Writing sheet " + sheet_name + " to xlsm file " + xlsm_file)
-        df = xl.parse(sheet_name)
-        df.to_excel(writer, sheet_name=sheet_name, index=False)
-
-    # Move the sheet "_xlwings.conf" to the end of the xlsm file.
-    # This sheet was created together with Sheet1 (deleted above) when `xlwings quickstart` was run.
-    sheet = book["_xlwings.conf"]
-    book.remove(sheet)
-    book._sheets.append(sheet)
-
-    writer.close()
-
-    # Generate the Python code for the newly created xlwings template xlsm file.
-    # This consists in copying the code from the script display_images.py and 
-    # inserting the name of the corresponding xlsm file after the line
+    # Generate the needed Python file corresponding to the *.xlsx file.
+    # So, copy the code from the script display_images.py and 
+    # insert the name of the corresponding xlsx file after the line
     # if __name__ == "__main__": 
     
     # Get the path to the directory where this script file is located & executed from:
     path_to_dir_boxcel = sys.path[0] # this should return path/to/img-with-box-from-excel/src/boxcel
     display_images_py_file = os.path.join(path_to_dir_boxcel, "display_images.py")
 
-    target_py_file = os.path.join(
-        path_to_xlsx_file, 
-        xlsx_file_name_without_extension, 
-        xlsx_file_name_without_extension + ".py"
-        )
+    target_py_file = os.path.join(path_to_xlsx_file, xlsx_file_name_without_extension + ".py")
 
     with open(display_images_py_file,'r') as firstfile, open(target_py_file,'w') as secondfile:
         # Read content from first file

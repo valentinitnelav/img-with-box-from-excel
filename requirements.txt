@@ -3,4 +3,3 @@
 pandas>=1.1.3
 Pillow>=9.2.0
 xlwings>=0.28.3
-openpyxl>=3.0.10
