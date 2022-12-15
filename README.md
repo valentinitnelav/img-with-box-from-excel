@@ -34,7 +34,7 @@ From within Excel, one can click on any row, and a Python script will read the i
     ```
 - Clone this repository at your favorite location, for example, to `C:\Users\your_user_name\Documents` and then install the dependencies:
 ```sh
-cd C:\Users\your_user_name\Documents
+cd C:\Users\%USERNAME%\Documents
 git clone https://github.com/valentinitnelav/img-with-box-from-excel
 cd img-with-box-from-excel
 pip install -r requirements.txt
@@ -68,15 +68,15 @@ xlwings addin install
 - Assuming you have a file called `data_file.xlsx` (with the requirements from above), to make it ready to run with this xlwings tool, in the Anaconda Prompt (or Anaconda Powershell Prompt) do this:
 ```sh
 # In a terminal/command line navigate to the cloned repository and then to the src/boxcel folder
-cd C:\Users\your_user_name\Documents\img-with-box-from-excel\src\boxcel
+cd C:\Users\%USERNAME%\Documents\img-with-box-from-excel\src\boxcel
 # Execute the start_project.py which takes as argument the path to your Excel file:
 python start_project.py path\to\your\data_file.xlsx # or python3 ...
 # Example:
-# python start_project.py C:\Users\your_user_name\Downloads\data_file.xlsx
+# python start_project.py C:\Users\%USERNAME%\Downloads\data_file.xlsx
 
 # You should see something like:
 # xlwings version: 0.28.5
-# Copied the Python code from C:\Users\your_user_name\Documents\img-with-box-from-excel\src\boxcel\display_images.py to C:\Users\your_user_name\Downloads\data_file.py
+# Copied the Python code from C:\Users\%USERNAME%\Documents\img-with-box-from-excel\src\boxcel\display_images.py to C:\Users\%USERNAME%\Downloads\data_file.py
 # All good!
 ```
 This just created the `data_file.py` in the same folder with `data_file.xlsx`.
