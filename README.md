@@ -84,6 +84,13 @@ This just created the `data_file.py` in the same folder with `data_file.xlsx`.
 Open the Excel file, click on any cell, go to the xlwings menu, and press the green play button named "Run main". The tool will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
 It will work on any sheet in your `data_file.xlsx` file as long as it can find the required columns mentioned above and they contain valid values.
 
+There is also a graphical user interface for the tool.
+To make use of it, at the moment you need to run the script `gui.py` like this:
+```sh
+# In a terminal/command line navigate to the cloned repository and then to the src/boxcel folder
+cd C:\Users\%USERNAME%\Documents\img-with-box-from-excel\src\boxcel
+python gui.py
+```
 
 Additional resources for [xlwings](https://docs.xlwings.org/en/latest/) and the xlwings add-in:
 

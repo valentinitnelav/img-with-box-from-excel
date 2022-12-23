@@ -1,3 +1,4 @@
 dist
 sandbox
 src/boxcel/archive
+__pycache__

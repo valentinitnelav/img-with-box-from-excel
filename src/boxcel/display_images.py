@@ -1,6 +1,6 @@
-# This script helps a Excel user to visualise images which have their full/absolute paths
+# This script helps a Excel user to visualize images which have their full/absolute paths
 # stored in a column (here named 'windows_img_path'). Each images has also 4 coordinates for 
-# the boudning box (x, y, width, height) as given by the VGG Image Annotator (VIA),
+# the bounding box (x, y, width, height) as given by the VGG Image Annotator (VIA),
 # see https://www.robots.ox.ac.uk/~vgg/software/via/
 # The script works only if each row in the Excel file corresponds to a single bounding box.
 
@@ -28,7 +28,7 @@ def display_img():
     wb = xw.Book.caller()
     # Get the calling/current sheet
     sht = wb.sheets.active
-    # Return the row id of the calling/currect selected cell
+    # Return the row id of the calling/current selected cell
     row_id = wb.app.selection.row
 
     # Read each current (selected) row as a data frame.
@@ -36,7 +36,7 @@ def display_img():
     # It only works properly as long as there are no empty cells within cells
     # with values in the first row / header of the sheet.
     cols = sht.range(1,1).expand(mode='right').value
-    # Then read each current row based on the lenght of the header (cols is a list here)
+    # Then read each current row based on the length of the header (cols is a list here)
     line = sht.range(cell1=(row_id,1), cell2=(row_id,len(cols))).value
     # Create the 1-row data frame which contains the info stored in the selected row
     df = pd.DataFrame([line], columns=cols)

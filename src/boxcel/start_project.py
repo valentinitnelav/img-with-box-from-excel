@@ -55,7 +55,7 @@ def start_project(xlsx_file):
 
 
 if __name__ == '__main__':
-    # Read the xlsx file which is the frist argument.
+    # Read the xlsx file which is the first argument.
     xlsx_file = sys.argv[1]
     # For how to add arguments to the script from command line with sys.argv, see 
     # https://www.tutorialspoint.com/python/python_command_line_arguments.htm
