@@ -9,6 +9,7 @@
 
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox # see issue #17
 from start_project import *
 
 
