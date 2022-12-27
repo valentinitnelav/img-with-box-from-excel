@@ -54,7 +54,7 @@ xlwings addin install
 - In a/any Excel file enable the xlwings add-in: menu File > Options > Add-ins > button "Go..." (usually at the bottom, to the right of "Manage: Excel Add-ins"); Click “Browse” and search for a path similar to this one `C:\Users\you_user_name\AppData\Roaming\Microsoft\Excel\XLSTART`; Select the file `xlwings.xlam`; OK; YES (if asked to replace the existing file); OK again;
 - At his point, you should see a new menu/tab named "xlwings" in the Excel file (after the Help menu/tab); 
 
-### Excel data structure: 
+## Excel data structure: 
 
 - In our case, the annotation data can be stored in an Excel file (we'll call it further `data_file.xlsx`) in which each row represents information about a single bounding box.
 - The first row of the Excel file must act as the header of the data and must not have empty cells within cells with data (each column should have a name);
@@ -63,7 +63,19 @@ xlwings addin install
     - `id_box`: integer, the id of each box as recorded by the [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/); 
     - `x`, `y`, `width` & `height` integer type columns as given by VIA; these are the bounding box coordinates, where `x` & `y` represent the upper left corner (the origin).
 
-### Run the tool
+## Run the tool
+
+### Via the Graphical user interface (GUI)
+
+To make use of the GUI, navigate with Windows Explorer to the folder where you cloned this repository, then to the `img-with-box-from-excel\src\boxcel` and right-click on the `gui.py` file and choose "Open with..." then Python. This will start the GUI.
+
+If this fails you can also start the GUI script from command line:
+```sh
+# In a terminal/command line navigate to the cloned repository and then to the src/boxcel folder
+cd C:\Users\%USERNAME%\Documents\img-with-box-from-excel\src\boxcel
+python gui.py
+```
+### Via command line
 
 - Assuming you have a file called `data_file.xlsx` (with the requirements from above), to make it ready to run with this xlwings tool, in the Anaconda Prompt (or Anaconda Powershell Prompt) do this:
 ```sh
@@ -83,14 +95,6 @@ This just created the `data_file.py` in the same folder with `data_file.xlsx`.
 
 Open the Excel file, click on any cell, go to the xlwings menu, and press the green play button named "Run main". The tool will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
 It will work on any sheet in your `data_file.xlsx` file as long as it can find the required columns mentioned above and they contain valid values.
-
-There is also a graphical user interface for the tool.
-To make use of it, at the moment you need to run the script `gui.py` like this:
-```sh
-# In a terminal/command line navigate to the cloned repository and then to the src/boxcel folder
-cd C:\Users\%USERNAME%\Documents\img-with-box-from-excel\src\boxcel
-python gui.py
-```
 
 Additional resources for [xlwings](https://docs.xlwings.org/en/latest/) and the xlwings add-in:
 
