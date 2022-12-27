@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/557367197.svg)](https://zenodo.org/badge/latestdoi/557367197)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7487550.svg)](https://doi.org/10.5281/zenodo.7487550)
 
 # Overview - What is this about?
 
@@ -130,4 +130,4 @@ Additional resources for [xlwings](https://docs.xlwings.org/en/latest/) and the 
 
 If this work helped you in any way and would like to cite it, you can do so with a DOI from Zenodo, like:
 
-> Valentin Ștefan. (2022). Use `xlwings` to integrate Python with Excel VBA for visualizing images with their corresponding bounding boxes for your AI project. (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.7250165
+> Valentin Ștefan. (2022). boxcel (v2.0.0) - Integrate Excel with Python for visualizing images with their corresponding bounding boxes for object detection annotation workflows. Zenodo. https://doi.org/10.5281/zenodo.7487550
