@@ -4,8 +4,8 @@
 
 How to use the free functionality of the [xlwings](https://www.xlwings.org/) library to integrate Python with Excel for visualizing annotated images with their associated bounding boxes for object annotation workflows in your object detection project.
 
-![xlwings-01](https://user-images.githubusercontent.com/14074269/197849882-fc5bba75-7ac2-48e9-b0be-c67fd173342e.jpg)
-![xlwings-02](https://user-images.githubusercontent.com/14074269/197849897-1cb8b94e-bf4b-4aed-a6ae-cd9bb4b23f4d.jpg)
+![excel_main_view](https://user-images.githubusercontent.com/14074269/209698357-5f6dd7ac-147c-4516-8908-463a5abc10ca.jpg)
+![image_with_box](https://user-images.githubusercontent.com/14074269/209698388-d6110da9-34f1-461a-9a7c-13dd91a06715.jpg)
 
 The Syrphid image was downloaded from [wikipedia](https://en.wikipedia.org/wiki/Hover_fly#/media/File:ComputerHotline_-_Syrphidae_sp._(by)_(3).jpg)
 
