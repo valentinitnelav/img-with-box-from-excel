@@ -91,6 +91,8 @@ It will work on any sheet in your `data_file.xlsx` file as long as it can find t
 [tbl_img_04]:https://user-images.githubusercontent.com/14074269/209702607-b40cfcf0-ac85-42ef-b290-341da35f822e.jpg
 [tbl_img_05]:https://user-images.githubusercontent.com/14074269/209704105-5f65c641-360f-47f4-ab6d-960b00b31b9b.jpg
 
+The documentation for how [PyInstaller](https://pyinstaller.org/en/stable/operating-mode.html#) was used to produce the `boxcel.exe` is [here](https://github.com/valentinitnelav/img-with-box-from-excel/issues/16#issuecomment-1366161874).
+
 Alternatively, if all Python dependencies are in place you can also run the tool like this:
 
 Navigate with Windows Explorer to the folder where you cloned this repository, then to the `img-with-box-from-excel\src\boxcel` and right-click on the `gui.py` file and choose "Open with..." then Python. This will start the GUI.
