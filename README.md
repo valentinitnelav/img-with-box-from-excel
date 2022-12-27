@@ -55,12 +55,14 @@ pip install -r requirements.txt
 ```
 ## Excel data structure: 
 
-- In our case, the annotation data can be stored in an Excel file (we'll call it further `data_file.xlsx`) in which each row represents information about a single bounding box.
-- The first row of the Excel file must act as the header of the data and must not have empty cells within cells with data (each column should have a name);
-- Each row should have at least the following columns (exactly these names) so that the tool works without any other adjustments (see image above):
+- In our case, the annotation data can be stored in an Excel file (we'll call it further `data_file.xlsx`) where each row represents information about a single bounding box.
+- The first row of the Excel file must act as the header of the data and must not have empty cells within cells with data (each column must have a name);
+- Each row must have at least the following columns (exactly these names) so that the tool works without any other adjustments:
     - `windows_img_path`: string type, the full/absolute path to the image, e.g. `I:\data\field-images\2021-07-06\Centaurea-scabiosa-01\IMG_0377.JPG`;
     - `id_box`: integer, the id of each box as recorded by the [VGG Image Annotator (VIA)](https://www.robots.ox.ac.uk/~vgg/software/via/); 
     - `x`, `y`, `width` & `height` integer type columns as given by VIA; these are the bounding box coordinates, where `x` & `y` represent the upper left corner (the origin).
+
+![excel_data_structure](https://user-images.githubusercontent.com/14074269/209700314-692104e8-db35-4d96-ad5e-bb601b555150.jpg)
 
 ## Run the tool
 
@@ -73,6 +75,21 @@ Open `boxcel.exe`. Click the button "Browse & execute". Choose the desired Excel
 
 Open the Excel file, click on any cell, go to the xlwings menu, and press the green play button named "Run main". The tool will read the current row information with the image path from the column `windows_img_path`, the `id_box` and the box coordinates from `x`, `y`, `width` & `height` columns, and will display the image with its bounding box and a label with the box id.
 It will work on any sheet in your `data_file.xlsx` file as long as it can find the required columns mentioned above and they contain valid values.
+
+|                                |                                      |
+|:------------------------------ |:------------------------------------ |
+| 1) Open `boxcel.exe`           | 2) Click "Browse & execute"          |
+| ![boxcel_exe][tbl_img_01]      | ![browse_and_execute][tbl_img_02]    |
+| 3) Open/Choose Excel file      | 4) Message when successful           |
+| ![open_file][tbl_img_03]       | ![all_good_msg][tbl_img_04]          |
+| 5) Can close the application or run it for another file |             |
+| ![final_window][tbl_img_05]    |                                      |
+
+[tbl_img_01]:https://user-images.githubusercontent.com/14074269/209702404-de207b24-aec3-4ee9-b67a-75efb0621ef7.jpg
+[tbl_img_02]:https://user-images.githubusercontent.com/14074269/209702480-33f377e1-edc5-4f2d-8182-3fcea7cc5185.jpg
+[tbl_img_03]:https://user-images.githubusercontent.com/14074269/209702556-821e71e6-5b2a-4bef-9527-568452e92600.jpg
+[tbl_img_04]:https://user-images.githubusercontent.com/14074269/209702607-b40cfcf0-ac85-42ef-b290-341da35f822e.jpg
+[tbl_img_05]:https://user-images.githubusercontent.com/14074269/209704105-5f65c641-360f-47f4-ab6d-960b00b31b9b.jpg
 
 Alternatively, if all Python dependencies are in place you can also run the tool like this:
 
