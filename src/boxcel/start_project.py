@@ -1,12 +1,43 @@
-# Run the script like this:
+# This is the main script that is executed when the user clicks the button 
+# "Browse & execute" in the GUI.
+# The start_project function from this script is responsible for generating the 
+# Python code that enables the xlwings functionality for the Excel file.
+# This script can also be executed from the command line like this:
 # python3 start_project.py path/to/file.xlsx
+# or
+# python start_project.py path/to/file.xlsx
 
 import sys
 import os
 
+# Function to get the absolute path to the current working directory
+# This is to fix errors like this:
+# "[Error 2] No such file or directory:
+# 'C:\\Users\\user\\AppData\\Local\\Temp\\_MEI112962\\base_library.zip\\display_images.py'"
+# This is because the script is executed from a temporary directory when using PyInstaller.
+# PyInstaller creates a temp folder and stores path in _MEIPASS2 or ._MEIPASS
+# See https://stackoverflow.com/a/13790741/5193830
+# Also https://pyinstaller.org/en/stable/runtime-information.html#run-time-information
+def get_work_dir_path():
+    """ Get absolute path to current working directory"""
+    try:
+        base_path = sys._MEIPASS2
+    except Exception:
+        base_path = sys._MEIPASS
+    else:
+        # When running in "normal" Python environment.
+        # For example, when running from the command line:
+        # python3 start_project.py path/to/file.xlsx
+        # sys.path[0] returns something like path/to/src/boxcel
+        base_path = sys.path[0]
+
+    return base_path
+
+
 def start_project(xlsx_file):
-    """
-    This function writes the needed code to the *.py file corresponding to the *.xlsx file.
+    """ Writes the needed code to the *.py file corresponding to the *.xlsx file.
+    The code is copied from the script display_images.py and the name of the
+    corresponding xlsx file is inserted after the line if __name__ == "__main__":
     """
 
     # Test if the xlsx file exists
@@ -35,8 +66,8 @@ def start_project(xlsx_file):
     # if __name__ == "__main__": 
     
     # Get the path to the directory where this script file is located & executed from:
-    path_to_dir_boxcel = sys.path[0] # this should return path/to/img-with-box-from-excel/src/boxcel
-    display_images_py_file = os.path.join(path_to_dir_boxcel, "display_images.py")
+    print('get_work_dir_path():', get_work_dir_path()) # print kept for debugging purposes
+    display_images_py_file = os.path.join(get_work_dir_path(), "display_images.py")
 
     target_py_file = os.path.join(path_to_xlsx_file, xlsx_file_name_without_extension + ".py")
 
