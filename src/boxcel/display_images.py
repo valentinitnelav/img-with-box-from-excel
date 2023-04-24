@@ -42,10 +42,10 @@ def display_img():
     df = pd.DataFrame([line], columns=cols)
 
     # Read the box coordinates and prepare them for PIL.ImageDraw.Draw.rectangle()
-    x0 = df['x'][0]
-    y0 = df['y'][0]
-    x1 = df['x'][0] + df['width'][0]
-    y1 = df['y'][0] + df['height'][0]
+    x0 = int(df['x'][0])
+    y0 = int(df['y'][0])
+    x1 = x0 + int(df['width'][0])
+    y1 = y0 + int(df['height'][0])
     coord = [x0, y0, x1, y1]
 
     # Read also the box id; this can be useful to have on the image.
